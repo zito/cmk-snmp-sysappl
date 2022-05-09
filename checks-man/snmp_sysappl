@@ -1,0 +1,24 @@
+title: SNMP System Applications running
+agents: snmp
+catalog: os/ps
+license: GPL
+distribution: none
+author: Václav Ovsík <vaclav.ovsik@seznam.cz>
+description:
+ This check monitors the running status of applications
+ presented through SNMP SYSAPPL-MIB.
+
+ Each application can have several runnning processes.
+ The state of corresponding CheckMK service is {OK} if there are some running
+ instances (processes). In the case of none running application instances
+ the result will be {CRIT}.
+
+ Unfortunately the final result of check not neccessarily corresponds
+ with the health of the service. There maybe some zombie process etc…
+ On the other hand, some blackbox appliance does not offer better view
+ of internal state.
+
+ The check uses the SNMP MIB {SYSAPPL-MIB::sysApplMIB}.
+
+inventory:
+ One service is created for every installed and running application.
