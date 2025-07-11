@@ -1,0 +1,11 @@
+{'author': 'Vaclav Ovsik',
+ 'description': 'SNMP System Applications - run-state monitoring',
+ 'download_url': 'https://github.com/zito/cmk-snmp-sysappl/',
+ 'files': {'cmk_addons_plugins': ['collection/agent_based/snmp_sysappl.py',
+                                  'collection/checkman/snmp_sysappl']},
+ 'name': 'cmk-snmp-sysappl',
+ 'title': 'SNMP System Applications',
+ 'version': '2.3.0',
+ 'version.min_required': '2.3.0',
+ 'version.packaged': 'cmk-mkp-tool 1.0.0',
+ 'version.usable_until': None}

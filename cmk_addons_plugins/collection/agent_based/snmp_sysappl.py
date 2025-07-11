@@ -2,20 +2,25 @@
 # -*- coding: utf-8 -*-
 # vim:sta:si:sw=4:sts=4:et:
 
-from .agent_based_api.v1 import (
-        exists,
-        OIDBytes,
-        OIDEnd,
-        register,
-        Result,
-        Service,
-        SNMPTree,
-        State
-    )
-from .agent_based_api.v1.type_defs import CheckResult, DiscoveryResult, StringByteTable
 from collections import defaultdict
 from datetime import datetime
 from typing import Any, Dict, List
+
+from cmk.agent_based.v2 import (
+    CheckPlugin,
+    CheckResult,
+    DiscoveryResult,
+    exists,
+    OIDBytes,
+    OIDEnd,
+    Result,
+    Service,
+    SNMPSection,
+    SNMPTree,
+    State,
+    StringByteTable,
+    StringTable,
+)
 
 
 Section = Dict[str, Any]
@@ -62,7 +67,7 @@ def check_snmp_sysappl(item: str, params: Dict[str, Any], section: Section) -> C
                     details=f"installation index {d[0]}")
 
 
-register.snmp_section(
+snmp_section_snmp_sysappl = SNMPSection(
     name = "snmp_sysappl",
     detect = exists(".1.3.6.1.2.1.54.1.1.1.1.3.*"),  # SYSAPPL-MIB::sysApplInstallPkgProductName
     fetch = [
@@ -83,7 +88,7 @@ register.snmp_section(
     parse_function = parse_snmp_sysappl,
 )
 
-register.check_plugin(
+check_plugin_snmp_sysappl = CheckPlugin(
     name = "snmp_sysappl",
     service_name = "SysAppl %s",
     check_function = check_snmp_sysappl,
